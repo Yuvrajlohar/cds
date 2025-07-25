@@ -1,0 +1,2323 @@
+/* Global Resets */
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    /* border: red 1px; */
+   
+}
+
+.main {
+    width: 100%; /* Use 100% for full viewport width */
+    background-color: black;
+    overflow-x: hidden;
+}
+
+/* Body padding to prevent content from going under fixed navbar */
+body {
+    padding-top: 100px; /* Space for the fixed header */
+    background-color:#f8f9fa; /* Example background for content */
+    min-height: 200vh; /* For demonstration of fixed navbar and scrolling */
+}
+
+/* Body padding to prevent content from going under fixed navbar */
+body {
+    padding-top: 100px; /* Space for the fixed header */
+    background-color:#f8f9fa; /* Example background for content */
+    min-height: 200vh; /* For demonstration of fixed navbar and scrolling */
+    margin: 0; /* Remove default body margin */
+    font-family: Arial, sans-serif; /* A basic font for readability */
+}
+
+/* FOR NAVIGATION BAR */
+header {
+    display: flex;
+    padding: 15px 30px 15px 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    align-items: center;
+    height: 100px; /* Fixed height for the header */
+    box-sizing: border-box; /* Include padding in height */
+}
+
+nav {
+    display: flex;
+    height: 70px; /* Height for the nav content within header */
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.nav-image {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0; /* Prevent shrinking on smaller screens */
+}
+
+/* FOR IMAGE OF NAV BAR */
+.nav-image img {
+    height: 70px;
+    max-height: 70px;
+    width: auto;
+}
+
+/* PAGES LIKE HOME ABOUTUS */
+.nav-pg {
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+}
+
+.nav-page {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-page li {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.nav-page li a {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.nav-page li a:hover,
+.nav-page li a.active { /* Added active state for the Courses link */
+    color: blue;
+}
+.nav-page li a:active {
+    transform: translateY(1px); /* Slight push down effect */
+    color: darkblue; /* Darker blue on press */
+}
+
+
+/* FOR BUTTON OF NAV BAR */
+.nav-but {
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0; /* Prevent shrinking on smaller screens */
+}
+
+.nav-but button {
+    background-color: blueviolet;
+    padding: 15px 14px;
+    color: white;
+    font-size: 17px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.nav-but button:hover {
+    background: linear-gradient(180deg, rgba(211, 231, 232, 1) 0%, rgba(216, 216, 232, 1) 51%, rgba(227, 216, 216, 1) 100%);
+    padding: 17px 16px;
+    color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hamburger Menu Icon (Hidden by default on desktop) */
+.hamburger-menu {
+    display: none; /* Controlled by media queries */
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+/* Dropdown Panel for Courses (Desktop) */
+.dropdown-panel {
+    display: none; /* Hidden by default, shown by JS */
+    position: absolute;
+    /* Position relative to the parent header/nav for full width */
+    top: 100px; /* Height of the header */
+    left: 500px;
+    width: 50%; /* Spans full width of the header */
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    z-index: 999; /* Below the header but above other content */
+    border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
+    overflow: hidden; /* Ensure content stays within border-radius */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Subtle shadow */
+    box-sizing: border-box; /* Include padding/border in width */
+}
+
+.dropdown-panel.show-dropdown { /* Class added by JS to show the dropdown */
+    display: flex;
+}
+
+.dropdown-panel .categories {
+    width: 30%;
+    border-right: 1px solid #ccc;
+    background-color: rgba(255, 255, 255,0.4); /* Slightly more opaque */
+    padding: 10px 0; /* Add some vertical padding */
+    box-sizing: border-box;
+}
+
+.dropdown-panel .categories li {
+    list-style: none;
+    padding: 10px 20px; /* Increased padding for better click area */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap; /* Prevent category text wrapping */
+}
+
+.dropdown-panel .categories li:hover,
+.dropdown-panel .categories li.active {
+    background-color: rgba(220, 220, 220, 0.7); /* Lighter gray hover/active */
+    /* Removed border styles here as they can interfere with clean design */
+}
+
+.dropdown-panel .courses {
+    width: 70%;
+    padding: 15px; /* Increased padding */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Gap between course items */
+    list-style: none;
+    margin: 0;
+    background-color: rgba(18, 18, 192, 0.1); /* Lighter blue, less opaque */
+    border-bottom-right-radius: 10px;
+    box-sizing: border-box;
+    justify-content: flex-start; /* Align courses to the start */
+    align-content: flex-start; /* Align rows to the start */
+}
+
+.dropdown-panel .courses li {
+    width: calc(50% - 5px); /* Two columns with gap */
+    border-radius: 5px; /* Slightly more rounded */
+    height: 40px; /* Taller items */
+    padding: 0 10px; /* Horizontal padding for text */
+    box-sizing: border-box;
+    line-height: 40px; /* Vertically center text */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align text to the left */
+    border: 1px solid rgba(18, 18, 192, 0.2); /* Border matching background */
+    cursor: pointer;
+    color: #333; /* Darker text for readability */
+    background-color: rgba(255, 255, 255,0.8); /* White background for course items */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.dropdown-panel .courses li:hover {
+    background-color: rgba(18, 18, 192, 0.2); /* Lighter blue on hover */
+    border: rgba(255, 255, 255,0.4) solid 1px;
+   color: white;
+}
+
+/* Mobile Navigation Overlay (Hidden by default) */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999; /* Higher z-index to cover everything */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items from the top */
+    padding-top: 70px; /* Space from the top */
+    box-sizing: border-box;
+
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0.3s, pointer-events 0s 0.3s;
+}
+
+.mobile-nav-overlay.active {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0s 0s, pointer-events 0s 0s;
+}
+
+.mobile-nav-overlay .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    z-index: 10000; /* Ensure close button is clickable */
+}
+
+.mobile-nav-overlay ul.mobile-nav-page {
+    list-style: none;
+    padding: 0;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px; /* Adjusted margin for overall layout */
+    margin-bottom: 20px; /* Space before button */
+}
+
+.mobile-nav-overlay ul.mobile-nav-page li {
+    margin: 15px 0;
+    width: 100%; /* Make list items take full width for better tapping */
+    text-align: center;
+}
+
+.mobile-nav-overlay ul.mobile-nav-page li a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    padding: 10px 20px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-overlay ul.mobile-nav-page li a:hover {
+    color: blue;
+}
+
+/* Mobile Courses Sub-Dropdown (nested) */
+.mobile-courses-dropdown {
+    display: none; /* Hidden by default, shown by JS */
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly visible background */
+    border-radius: 5px;
+    max-height: 0; /* For collapse effect */
+    overflow: hidden; /* Hide overflow during collapse */
+    transition: max-height 0.3s ease-out; /* Smooth transition */
+}
+
+.mobile-courses-dropdown.active {
+    display: block; /* Show the block */
+    max-height: 300px; /* Adjust as needed to fit all courses, or use 'none' for instant */
+    /* Consider a dynamic max-height based on content for more precise animation */
+}
+
+.mobile-courses-dropdown li {
+    margin: 0; /* Reset margin */
+}
+
+.mobile-courses-dropdown li a {
+    font-size: 18px; /* Smaller font for sub-items */
+    padding: 8px 15px; /* Adjust padding */
+    color: lightgray; /* Different color for sub-items */
+    display: block;
+}
+
+.mobile-courses-dropdown li a:hover {
+    color: skyblue; /* Hover color for sub-items */
+}
+
+
+.mobile-nav-overlay .mobile-nav-button {
+    width: auto;
+    margin-top: 30px;
+    justify-content: center;
+    display: flex;
+}
+.mobile-nav-overlay .mobile-nav-button button {
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+.mobile-nav-overlay .mobile-nav-button button:hover {
+    background: linear-gradient(180deg, rgba(211, 231, 232, 1) 0%, rgba(216, 216, 232, 1) 51%, rgba(227, 216, 216, 1) 100%);
+    color: blue;
+}
+
+
+/* --------------------------------------------------- */
+/* RESPONSIVE STYLES (MEDIA QUERIES)                   */
+/* --------------------------------------------------- */
+
+/* Tablets and smaller desktops (max-width: 1024px) */
+@media (max-width: 1224px) {
+    header {
+        padding: 10px 15px;
+        height: 80px; /* Slightly reduced header height */
+    }
+    nav {
+        height: 50px; /* Reduced nav content height */
+    }
+
+    .nav-image {
+        width: 18%; /* Adjusted width */
+    }
+
+    .nav-image img {
+        height: 50px;
+        max-height: 50px;
+    }
+
+    .nav-pg {
+        width: 55%; /* Adjusted width */
+    }
+
+    .nav-page li a {
+        font-size: 15px;
+        padding: 0 6px; /* Reduced padding */
+    }
+
+    .nav-but {
+        width: 20%; /* Adjusted width */
+    }
+
+    .nav-but button {
+        padding: 10px 10px;
+        font-size: 14px;
+    }
+
+    /* Dropdown panel position for smaller screens */
+    .dropdown-panel {
+        top: 80px; /* Adjust based on new header height */
+        left:400px;
+    }
+}
+
+@media (max-width:990px) {
+      .dropdown-panel {
+        top: 80px; /* Adjust based on new header height */
+        left:300px;
+    }
+}
+
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 780px) {
+    header {
+        height: 70px; /* Mobile header height */
+        padding: 10px 15px; /* Consistent padding */
+    }
+    nav {
+        height: 50px;
+        justify-content: space-between;
+    }
+
+    .nav-image {
+        width: auto;
+        flex-grow: 1; /* Allow image to take available space */
+    }
+
+    .nav-image img {
+        height: 45px; /* Smaller logo for mobile */
+        max-height: 45px;
+    }
+
+    /* Hide desktop navigation links and button */
+    .nav-pg,
+    .nav-but {
+        display: none;
+    }
+
+    /* Hide desktop dropdown on mobile */
+    .dropdown-panel {
+        display: none !important; /* Force hide the desktop dropdown */
+    }
+
+    /* Show hamburger menu icon */
+    .hamburger-menu {
+        display: block;
+        margin-right: 15px;
+    }
+
+    /* Mobile overlay adjustments */
+    .mobile-nav-overlay {
+        padding-top: 50px; /* Adjusted padding */
+    }
+    .mobile-nav-overlay .close-btn {
+        top: 15px;
+        right: 15px;
+        font-size: 35px;
+    }
+    .mobile-nav-overlay ul.mobile-nav-page {
+        margin-top: 40px; /* Adjusted margin */
+    }
+    .mobile-nav-overlay ul.mobile-nav-page li a {
+        font-size: 22px;
+        padding: 8px 15px;
+    }
+    .mobile-nav-overlay .mobile-nav-button button {
+        padding: 10px 18px;
+        font-size: 16px;
+    }
+}
+
+/* Small mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    header {
+        padding: 8px 10px;
+        height: 60px; /* Even smaller header height */
+    }
+    nav {
+        height: 40px;
+    }
+
+    .nav-image img {
+        height: 40px;
+        max-height: 40px;
+    }
+
+    .hamburger-menu {
+        font-size: 28px;
+        margin-right: 10px;
+    }
+
+    .mobile-nav-overlay {
+        padding-top: 40px;
+    }
+    .mobile-nav-overlay .close-btn {
+        font-size: 30px;
+    }
+    .mobile-nav-overlay ul.mobile-nav-page li a {
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+    .mobile-nav-overlay .mobile-nav-button button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Extra small mobile devices (max-width: 280px) */
+@media (max-width: 280px) {
+    header {
+        padding: 5px 8px;
+        height: 50px;
+    }
+    nav {
+        height: 35px;
+    }
+
+    .nav-image img {
+        height: 35px; /* Smallest logo size */
+        max-height: 35px;
+    }
+
+    .hamburger-menu {
+        font-size: 24px;
+        margin-right: 8px;
+    }
+
+    .mobile-nav-overlay {
+        padding-top: 30px;
+    }
+    .mobile-nav-overlay .close-btn {
+        font-size: 28px;
+        top: 10px;
+        right: 10px;
+    }
+    .mobile-nav-overlay ul.mobile-nav-page li {
+        margin: 10px 0;
+    }
+    .mobile-nav-overlay ul.mobile-nav-page li a {
+        font-size: 16px;
+        padding: 5px 10px;
+    }
+    .mobile-nav-overlay .mobile-nav-button {
+        margin-top: 20px;
+    }
+    .mobile-nav-overlay .mobile-nav-button button {
+        padding: 6px 12px;
+        font-size: 12px;
+        width: 90%;
+        max-width: 150px;
+    }
+}/* --------------------------------------------------- */
+/* PLACE SECTION ONE (Hero Section)                    */
+/* --------------------------------------------------- */
+.place-section-one {
+    width: 100%;
+    background: radial-gradient(circle, rgba(27, 51, 171, 1) 0%, rgba(0, 0, 0, 1) 45%);
+}
+
+.sec-one-partone {
+    width: 100%;
+    display: flex;
+    padding: 100px 100px 25px 100px;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.sec-two-partone a{
+    text-decoration: none;
+    color: white;
+}
+
+.one-partone-one {
+    width: 49%;
+    padding: 10px;
+}
+
+#partone-one-headone {
+    font-size: 16px;
+    font-weight: 500;
+    background-color: rgba(62, 13, 146, 0.586);
+    border-radius: 25px;
+    color: white;
+    width: 20%; /* Keep as-is for large screen, will adjust */
+    min-width: fit-content; /* Ensure it doesn't shrink too much */
+    padding: 2px 8px 1px 8px; /* Adjusted padding for better text fit */
+    border: rgb(165, 154, 232) solid 1px;
+    font-family: sans-serif;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    text-align: center; /* Center text within its small box */
+}
+
+#partone-one-headtwo,
+#partone-one-headthree {
+    font-size: 54px;
+    color: white; /* #partone-one-headthree was rgb(255, 255, 255) */
+    padding: 2px 0px 2px 5px;
+    font-family: sans-serif;
+    margin-bottom: 20px; /* Only on headthree originally, added to headtwo for consistency */
+}
+
+#partone-one-paraone {
+    font-size: 19px;
+    font-family: sans-serif;
+    padding: 2px 0px 2px 5px;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.one-partone-one a {
+    text-decoration: none;
+    color: white;
+}
+
+#partone-one-headfour {
+    font-size: 15px;
+    font-family: sans-serif;
+    padding: 6px 15px 4px 15px; /* Increased horizontal padding */
+    background-color: rgba(7, 7, 248, 0.3);
+    width: fit-content; /* Use fit-content to allow it to shrink/grow with text */
+    color: white;
+    font-weight: 500;
+    border-radius: 5px; /* Added some border-radius for consistency */
+}
+
+.one-partone-two {
+    width: 48%;
+    object-fit: contain; /* object-fit is for img directly, not container */
+}
+
+.one-partone-two img {
+    width: 100%;
+    height: 77%; /* Will need adjustment for responsiveness */
+    object-fit: cover;
+    border-radius: 15px;
+    display: block; /* Remove extra space below img */
+}
+
+.sec-one-parttwo {
+    width: 100%;
+    padding: 25px 100px 25px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.one-parttwo-one {
+    display: flex;
+    justify-content: center;
+    font-size: 34px;
+    font-family: sans-serif;
+    padding-bottom: 20px;
+    color: wheat;
+    text-align: center; /* For multi-line headings */
+}
+
+.parttwo-one-paraone {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    text-align: center;
+    font-family: sans-serif;
+    color: white;
+}
+
+.one-parttwo-two {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 60px 10px 20px 10px;
+    flex-wrap: wrap; /* Allow cards to wrap */
+}
+
+.card-cover {
+    width: 20%; /* Keep as-is, will adjust */
+    height: 160px; /* Fixed height can be problematic, consider min-height/auto */
+    margin-bottom: 20px; /* Space between rows of cards */
+}
+
+.parttwo-card {
+    padding: 5px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* Fixed height, will adjust */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: solid rgba(255, 255, 255, 0.3) 1px;
+    border-radius: 15px;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.parttwo-card:hover {
+    width: 95%; /* Slightly larger on hover */
+    height: 155px;
+    box-shadow: 4px 4px 80px rgba(255, 255, 255, 0.2);
+}
+
+.parttwo-card-head {
+    font-size: 30px;
+    font-family: sans-serif;
+    padding: 5px;
+    color: wheat;
+    text-align: center;
+}
+
+.parttwo-card-headtwo {
+    font-size: 15px;
+    padding: 5px;
+    font-family: sans-serif;
+    font-weight: 550;
+    color: wheat;
+    text-align: center;
+}
+
+.parttwo-card-para {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    padding: 10px;
+    border-radius: 30px;
+    margin-bottom: 8px;
+    width: 45px; /* Adjust as needed for icon circle */
+    height: 45px; /* Adjust as needed for icon circle */
+}
+
+.parttwo-card-para svg {
+    color: white;
+}
+
+/* --------------------------------------------------- */
+/* PLACEMENT-SECTIONTWO                                */
+/* --------------------------------------------------- */
+.sec-two-partone {
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%; /* Use min-height if content can grow */
+}
+
+#two-partone-headone {
+    font-size: 35px;
+    font-family: sans-serif;
+    padding: 30px 30px 10px 30px;
+    color: rgb(195, 195, 231);
+    text-align: center;
+}
+
+.two-partone-para {
+    font-size: 17px;
+    font-family: sans-serif;
+    padding: 0px 20px 20px 20px;
+    color: white;
+    text-align: center; /* Center paragraph text */
+    width: 70%; /* Limit width for readability on large screens */
+}
+
+.two-partone-one {
+    display: flex;
+    margin: 30px;
+    height: 260px; /* Fixed height, will adjust */
+    width: 80%;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow cards to wrap */
+}
+
+.card-width {
+    width: 32%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px; /* Space between rows of cards */
+}
+
+.two-partone-one-card {
+    width: 92%;
+    height: 250px; /* Fixed height, will adjust */
+    background-color: rgba(69, 69, 247, 0.1);
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    border: solid rgba(126, 157, 236, 0.5) 1px;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.two-partone-one-card:hover {
+    height: 258px;
+    box-shadow: 4px 3px 80px rgb(73, 73, 179, 0.3);
+}
+
+.two-partone-one-card img {
+    width: 33%;
+    max-width: 120px; /* Limit image size */
+    height: 120px; /* Keep height fixed for circular crop */
+    border-radius: 50%; /* Use 50% for perfect circle */
+    border: rgba(247, 243, 243, 0.4) solid 1px;
+    object-fit: cover;
+    padding: 5px;
+}
+
+.two-partone-one-head {
+    font-size: 20px;
+    font-family: sans-serif;
+    padding: 5px;
+    color: white;
+    text-align: center;
+}
+
+.two-partone-one-headtwo {
+    font-size: 15px;
+    font-family: sans-serif;
+    padding: 3px;
+    color: white;
+    text-align: center;
+}
+
+.two-partone-one-para {
+    font-size: 14px;
+    font-family: sans-serif;
+    padding: 2px;
+    color: white;
+    text-align: center;
+}
+
+#two-partone-btn {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: sans-serif;
+    background-color: rgba(139, 45, 227, 0.2);
+    border-radius: 10px;
+    font-weight: 600;
+    color: white;
+    border: rgba(250, 246, 246, 0.5) solid 1px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    margin-top: 30px; /* Add some space above button */
+}
+
+#two-partone-btn:hover {
+    padding: 12px 22px; /* Slightly adjusted padding for smoother hover */
+    background-color: rgba(139, 45, 227, 0.3);
+}
+
+/* --------------------------------------------------- */
+/* PLACEMENT-SECTION-THREE                             */
+/* --------------------------------------------------- */
+.sec-three-partone {
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%; /* Use min-height */
+}
+
+.sec-three-parttwo {
+    width: 100%; /* Corrected from '100' */
+    background-color: rgb(0, 0, 0);
+}
+
+.sec-three-parttwo-container {
+    width: 100%; /* Corrected from '100' */
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+}
+
+.three-parttwo-one {
+    width: 80%; /* Will adjust */
+    background-color: rgba(69, 69, 247, 0.1);
+    padding: 30px 30px 0px 30px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    border: solid rgba(181, 181, 244, 0.4) 1px;
+}
+
+#three-parttwo-one-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-family: sans-serif;
+    color: rgb(192, 179, 236);
+    padding: 10px 10px 30px 10px;
+    text-align: center;
+}
+
+.three-parttwo-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow content containers to wrap */
+}
+
+.three-parttwo-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    justify-content: space-evenly;
+    width: 49%; /* Will adjust */
+}
+
+.three-parttwo-one-content {
+    padding-bottom: 20px;
+}
+
+.three-parttwo-one-content-heading {
+    font-size: 21px;
+    font-family: sans-serif;
+    padding: 5px;
+    color: rgb(185, 185, 234);
+}
+
+.three-parttwo-one-content-para {
+    font-size: 17px;
+    font-family: sans-serif;
+    padding: 5px;
+    color: white;
+}
+
+#three-parttwo-one-headtwo {
+    color: rgb(185, 185, 234);
+    display: flex;
+    justify-content: center;
+    padding: 50px 30px 100px 30px;
+    margin: 20px;
+    font-size: 28px;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+/* --------------------------------------------------- */
+/* SECTION-FOUR                                        */
+/* --------------------------------------------------- */
+.place-section-four {
+    width: 100%;
+    background: radial-gradient(circle, rgba(27, 51, 171, 1) 0%, rgba(0, 0, 0, 1) 45%);
+    padding-bottom: 50px; /* Added bottom padding */
+}
+
+.section-four-partone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px; /* Will adjust */
+    width: 100%;
+    align-items: center;
+}
+
+.four-partone-one {
+    width: 85%; /* Will adjust */
+    padding: 50px; /* Will adjust */
+}
+
+.four-partone-one-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#four-partone-one-content-head {
+    font-size: 40px;
+    color: rgb(185, 185, 234);
+    font-family: sans-serif;
+    padding: 0px 30px 30px 30px;
+    text-align: center;
+}
+
+#four-partone-one-content-para {
+    background-color: rgba(69, 69, 247, 0.1);
+    font-size: 18px;
+    font-family: sans-serif;
+    padding: 10px 15px; /* Adjusted padding */
+    margin-bottom: 40px;
+    color: white;
+    text-align: center;
+    border-radius: 10px; /* Added border-radius */
+    width: 70%; /* Limit width for readability */
+}
+
+.four-partone-one-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow cards to wrap */
+}
+
+.four-partone-one-card {
+    width: 23%; /* Will adjust */
+    background-color: rgba(69, 69, 247, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    border: solid rgba(252, 247, 247, 0.3) 1px;
+    margin-bottom: 20px; /* Space between rows */
+    transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.four-partone-one-card:hover {
+    background-color: rgba(177, 177, 245, 0.1);
+    box-shadow: 4px 3px 80px rgb(73, 73, 179, 0.3);
+}
+
+.four-partone-one-card-no {
+    width: 40px; /* Fixed size for numbers */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(69, 69, 247, 0.1);
+    border-radius: 50%; /* Perfect circle */
+    color: white;
+    font-size: 1.2em; /* Ensure number is visible */
+    margin-bottom: 10px;
+}
+
+.four-partone-one-card-headone {
+    font-size: 18px;
+    font-family: sans-serif;
+    margin: 10px;
+    color: white;
+    text-align: center;
+}
+
+.four-partone-one-card-para {
+    text-align: center;
+    font-size: 15px;
+    font-family: sans-serif;
+    color: white;
+}
+
+.section-four-parttwo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px; /* Add some top padding */
+}
+
+.four-parttwo-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px; /* Will adjust */
+    width: 80%; /* Will adjust */
+    background-color: rgba(177, 177, 245, 0.1);
+    border: solid rgba(255, 255, 255, 0.3) 1px;
+    border-radius: 15px;
+    flex-wrap: wrap; /* Allow parts to wrap */
+}
+
+.four-parttwo-container-one {
+    display: flex;
+    flex-direction: column;
+    width: 50%; /* Will adjust */
+    padding: 5px;
+}
+
+#four-parttwo-container-head {
+    font-size: 33px;
+    font-family: sans-serif;
+    padding: 20px;
+    color: rgb(185, 185, 234);
+    text-align: center;
+}
+
+#four-parttwo-container-para {
+    font-size: 18px;
+    color: white;
+    font-family: sans-serif;
+    padding: 0px 20px 20px 20px;
+    text-align: center;
+}
+
+.four-parttwo-container-btn {
+    padding: 20px;
+    height: auto; /* Allow height to adjust */
+    display: flex; /* Make button container a flex container */
+    justify-content: center; /* Center the button */
+    align-items: center;
+}
+
+.four-parttwo-container-btn button {
+    padding: 12px 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: white;
+    background-color: rgb(100, 100, 222);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.four-parttwo-container-btn button:hover {
+    background-color: rgb(72, 72, 232);
+    padding: 14px 28px;
+}
+
+.four-parttwo-container-two {
+    width: 35%; /* Will adjust */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically center content */
+}
+
+.four-parttwo-container-two-para {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 65%;
+    /* padding: 15px; */
+    border-radius: 5000px;
+    min-height: 100px;
+    text-align: center;
+    color: white;
+    height: 100%;
+    font-size: 1.1em;
+}
+
+.four-parttwo-container-two-para svg {
+    padding: 10px;
+}
+
+
+/* --------------------------------------------------- */
+/* RESPONSIVE STYLES (MEDIA QUERIES)                   */
+/* --------------------------------------------------- */
+
+/* Tablets and smaller desktops (max-width: 1024px) */
+@media (max-width: 1024px) {
+    /* General adjustments */
+    .sec-one-partone,
+    .sec-one-parttwo,
+    .sec-two-partone,
+    .sec-three-partone,
+    .section-four-partone,
+    .section-four-parttwo {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    /* SECTION ONE */
+    .sec-one-partone {
+        padding-top: 70px;
+    }
+
+    .one-partone-one,
+    .one-partone-two {
+        width: 100%; /* Stack items vertically */
+        text-align: center; /* Center text content */
+    }
+
+    .one-partone-one {
+        margin-bottom: 30px; /* Space between stacked content and image */
+        padding: 0 20px; /* Adjust padding */
+    }
+
+    #partone-one-headone {
+        width: fit-content; /* Allow it to shrink/grow */
+        margin: 0 auto 20px auto; /* Center it */
+        padding: 5px 10px; /* Adjusted padding */
+    }
+
+    #partone-one-headtwo,
+    #partone-one-headthree {
+        font-size: 44px; /* Smaller font size */
+        padding: 0; /* Remove left padding */
+    }
+
+    #partone-one-paraone {
+        font-size: 17px; /* Smaller font size */
+        padding: 0; /* Remove left padding */
+    }
+
+    #partone-one-headfour {
+        width: fit-content;
+        margin: 0 auto; /* Center it */
+        font-size: 14px;
+        padding: 5px 12px;
+    }
+
+    .one-partone-two img {
+        height: auto; /* Allow height to adjust proportionally */
+        max-height: 400px; /* Limit max height for large images */
+    }
+
+    .sec-one-parttwo {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .one-parttwo-one {
+        font-size: 30px; /* Smaller heading */
+    }
+
+    .parttwo-one-paraone {
+        width: 70%; /* Wider paragraph for readability */
+        font-size: 18px; /* Slightly smaller */
+    }
+
+    .one-parttwo-two {
+        padding: 40px 0px 20px 0px;
+        justify-content: space-around; /* Distribute cards */
+    }
+
+    .card-cover {
+        width: 45%; /* Two cards per row */
+        height: auto; /* Allow height to adapt */
+        margin-bottom: 30px; /* More space between rows */
+    }
+
+    .parttwo-card {
+        height: auto; /* Allow height to adapt */
+        padding: 15px; /* More padding */
+    }
+
+    .parttwo-card-head {
+        font-size: 26px; /* Smaller card heading */
+    }
+
+    .parttwo-card-headtwo {
+        font-size: 14px; /* Smaller sub-heading */
+    }
+
+    /* SECTION TWO */
+    #two-partone-headone {
+        font-size: 30px; /* Smaller heading */
+        padding: 20px 20px 10px 20px;
+    }
+
+    .two-partone-para {
+        font-size: 16px; /* Smaller paragraph */
+        width: 80%; /* Wider for readability */
+    }
+
+    .two-partone-one {
+        width: 90%; /* Wider container */
+        height: auto; /* Allow height to adjust */
+        margin: 20px 0;
+    }
+
+    .card-width {
+        width: 48%; /* Two cards per row */
+        margin-bottom: 30px; /* Space between rows */
+    }
+
+    .two-partone-one-card {
+        height: auto; /* Allow height to adjust */
+        padding-bottom: 15px; /* Ensure content fits */
+    }
+
+    .two-partone-one-card img {
+        margin-top: 5px;
+        width: 40%; /* Slightly larger image */
+        height: 100px; /* Adjust fixed height */
+        max-width: 100px;
+    }
+
+    #two-partone-btn {
+        font-size: 15px;
+        padding: 10px 18px;
+    }
+
+    /* SECTION THREE */
+    .sec-three-parttwo-container {
+        padding: 0 30px; /* Add horizontal padding */
+    }
+
+    .three-parttwo-one {
+        width: 90%; /* Wider container */
+        padding: 20px;
+    }
+
+    #three-parttwo-one-head {
+        font-size: 26px; /* Smaller heading */
+        padding: 10px 0 20px 0;
+    }
+
+    .three-parttwo-container {
+        flex-direction: column; /* Stack content containers */
+    }
+
+    .three-parttwo-content-container {
+        width: 100%; /* Take full width when stacked */
+        padding: 10px 0;
+    }
+
+    .three-parttwo-one-content-heading {
+        font-size: 19px; /* Smaller heading */
+    }
+
+    .three-parttwo-one-content-para {
+        font-size: 16px; /* Smaller paragraph */
+    }
+
+    #three-parttwo-one-headtwo {
+        font-size: 24px; /* Smaller heading */
+        padding: 30px 20px 70px 20px; /* Adjusted padding */
+    }
+
+    /* SECTION FOUR */
+    .section-four-partone {
+        padding: 40px;
+    }
+
+    .four-partone-one {
+        width: 90%; /* Wider container */
+        padding: 30px;
+    }
+
+    #four-partone-one-content-head {
+        font-size: 35px; /* Smaller heading */
+        padding: 0px 20px 20px 20px;
+    }
+
+    #four-partone-one-content-para {
+        font-size: 16px; /* Smaller paragraph */
+        width: 85%; /* Wider for readability */
+        padding: 10px;
+    }
+
+    .four-partone-one-cards {
+        justify-content: space-around; /* Distribute cards */
+    }
+
+    .four-partone-one-card {
+        width: 45%; /* Two cards per row */
+        padding: 15px;
+        margin-bottom: 25px; /* Space between rows */
+    }
+
+    .four-partone-one-card-no {
+        width: 35px; /* Slightly smaller circle */
+        height: 35px;
+        font-size: 1.1em;
+    }
+
+    .four-partone-one-card-headone {
+        font-size: 16px; /* Smaller heading */
+    }
+
+    .four-partone-one-card-para {
+        font-size: 14px; /* Smaller paragraph */
+    }
+
+    .section-four-parttwo {
+        padding-top: 20px;
+    }
+
+    .four-parttwo-container {
+        width: 90%; /* Wider container */
+        padding: 20px;
+        flex-direction: column; /* Stack container parts */
+        align-items: center;
+    }
+
+    .four-parttwo-container-one,
+    .four-parttwo-container-two {
+        width: 100%; /* Take full width when stacked */
+        padding: 10px;
+        margin-bottom: 20px; /* Space between stacked parts */
+    }
+
+    .four-parttwo-container-two:last-child {
+        margin-bottom: 0;
+    }
+
+    #four-parttwo-container-head {
+        font-size: 28px; /* Smaller heading */
+        padding: 10px;
+    }
+
+    #four-parttwo-container-para {
+        font-size: 16px; /* Smaller paragraph */
+        padding: 0 10px 15px 10px;
+    }
+
+    .four-parttwo-container-btn {
+        padding: 10px;
+    }
+
+    .four-parttwo-container-two-para {
+        width: 90%; /* Wider for mobile */
+        min-height: 80px; /* Adjust min height */
+        font-size: 1em;
+    }
+}
+
+/* Mobile devices (max-width: 767px) */
+@media (max-width: 767px) {
+    /* General adjustments */
+    .sec-one-partone,
+    .sec-one-parttwo,
+    .sec-two-partone,
+    .sec-three-partone,
+    .section-four-partone,
+    .section-four-parttwo {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* SECTION ONE */
+    .sec-one-partone {
+        padding-top: 50px;
+        padding-bottom: 15px;
+    }
+
+    .one-partone-one {
+        margin-bottom: 20px;
+        padding: 0 10px;
+    }
+
+    #partone-one-headone {
+        font-size: 14px;
+        padding: 4px 8px;
+        margin-bottom: 15px;
+    }
+
+    #partone-one-headtwo,
+    #partone-one-headthree {
+        font-size: 34px; /* Even smaller font size */
+    }
+
+    #partone-one-paraone {
+        font-size: 15px; /* Even smaller font size */
+        margin-bottom: 20px;
+    }
+
+    #partone-one-headfour {
+        font-size: 13px;
+        padding: 4px 10px;
+    }
+
+    .one-partone-two img {
+        max-height: 300px;
+    }
+
+    .sec-one-parttwo {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 0;
+    }
+
+    .one-parttwo-one {
+        font-size: 26px; /* Smaller heading */
+        padding-bottom: 15px;
+    }
+
+    .parttwo-one-paraone {
+        width: 90%; /* Wider for small screens */
+        font-size: 16px; /* Smaller */
+    }
+
+    .one-parttwo-two {
+        padding: 30px 0 0 0;
+        justify-content: center; /* Center cards */
+        flex-direction: column; /* Stack cards */
+        align-items: center;
+    }
+
+    .card-cover {
+        width: 80%; /* Single card per row */
+        height: auto;
+        margin-bottom: 25px;
+    }
+
+    .parttwo-card {
+        height: auto;
+        padding: 10px;
+    }
+
+    .parttwo-card-head {
+        font-size: 24px;
+    }
+
+    .parttwo-card-headtwo {
+        font-size: 13px;
+    }
+
+    /* SECTION TWO */
+    #two-partone-headone {
+        font-size: 26px; /* Smaller heading */
+        padding: 15px 15px 10px 15px;
+    }
+
+    .two-partone-para {
+        font-size: 15px;
+        width: 90%;
+        padding: 0 15px 15px 15px;
+    }
+
+    .two-partone-one {
+        width: 95%; /* Even wider container */
+        margin: 15px 0;
+        flex-direction: column; /* Stack cards */
+        align-items: center;
+    }
+
+    .card-width {
+        width: 90%; /* Single card per row */
+        margin-bottom: 25px;
+    }
+
+    .two-partone-one-card {
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    .two-partone-one-card img {
+        width: 35%; /* Adjust size */
+        height: 90px;
+        max-width: 90px;
+    }
+
+    .two-partone-one-head {
+        font-size: 18px;
+    }
+
+    .two-partone-one-headtwo {
+        font-size: 14px;
+    }
+
+    .two-partone-one-para {
+        font-size: 13px;
+    }
+
+    #two-partone-btn {
+        font-size: 14px;
+        padding: 8px 15px;
+        margin-top: 20px;
+    }
+
+    /* SECTION THREE */
+    .sec-three-parttwo-container {
+        padding: 0 15px;
+    }
+
+    .three-parttwo-one {
+        width: 95%; /* Wider container */
+        padding: 15px;
+    }
+
+    #three-parttwo-one-head {
+        font-size: 22px;
+        padding: 10px 0 15px 0;
+    }
+
+    .three-parttwo-content-container {
+        padding: 5px 0;
+    }
+
+    .three-parttwo-one-content-heading {
+        font-size: 18px;
+    }
+
+    .three-parttwo-one-content-para {
+        font-size: 15px;
+    }
+
+    #three-parttwo-one-headtwo {
+        font-size: 20px;
+        padding: 20px 15px 50px 15px;
+    }
+
+    /* SECTION FOUR */
+    .section-four-partone {
+        padding: 30px;
+    }
+
+    .four-partone-one {
+        width: 95%;
+        padding: 20px;
+    }
+
+    #four-partone-one-content-head {
+        font-size: 30px;
+        padding: 0px 15px 15px 15px;
+    }
+
+    #four-partone-one-content-para {
+        font-size: 15px;
+        width: 95%;
+        padding: 8px 10px;
+        margin-bottom: 30px;
+    }
+
+    .four-partone-one-cards {
+        flex-direction: column; /* Stack cards */
+        align-items: center;
+    }
+
+    .four-partone-one-card {
+        width: 80%; /* Single card per row */
+        margin-bottom: 20px;
+    }
+
+    .four-partone-one-card-no {
+        width: 30px;
+        height: 30px;
+        font-size: 1em;
+    }
+
+    .four-partone-one-card-headone {
+        font-size: 15px;
+    }
+
+    .four-partone-one-card-para {
+        font-size: 13px;
+    }
+
+    .section-four-parttwo {
+        padding-top: 15px;
+    }
+
+    .four-parttwo-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .four-parttwo-container-one,
+    .four-parttwo-container-two {
+        margin-bottom: 15px;
+    }
+
+    #four-parttwo-container-head {
+        font-size: 24px;
+        padding: 10px;
+    }
+
+    #four-parttwo-container-para {
+        font-size: 15px;
+        padding: 0 10px 10px 10px;
+    }
+
+    .four-parttwo-container-btn {
+        padding: 5px;
+    }
+
+    .four-parttwo-container-btn button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .four-parttwo-container-two-para {
+        width: 95%;
+        min-height: 70px;
+        font-size: 0.9em;
+        padding: 10px;
+    }
+}
+
+/* Extra small mobile devices (max-width: 479px) */
+@media (max-width: 479px) {
+    /* General adjustments */
+    .sec-one-partone,
+    .sec-one-parttwo,
+    .sec-two-partone,
+    .sec-three-partone,
+    .section-four-partone,
+    .section-four-parttwo {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* SECTION ONE */
+    .sec-one-partone {
+        padding-top: 30px;
+        padding-bottom: 10px;
+    }
+
+    .one-partone-one {
+        padding: 0 5px;
+    }
+
+    #partone-one-headone {
+        font-size: 12px;
+        padding: 3px 6px;
+        margin-bottom: 10px;
+    }
+
+    #partone-one-headtwo,
+    #partone-one-headthree {
+        font-size: 28px;
+    }
+
+    #partone-one-paraone {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    #partone-one-headfour {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+
+    .one-partone-two img {
+        max-height: 250px;
+    }
+
+    .sec-one-parttwo {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .one-parttwo-one {
+        font-size: 22px;
+        padding-bottom: 10px;
+    }
+
+    .parttwo-one-paraone {
+        font-size: 14px;
+        width: 95%;
+    }
+
+    .one-parttwo-two {
+        padding: 20px 0 0 0;
+    }
+
+    .card-cover {
+        width: 95%;
+        margin-bottom: 20px;
+    }
+
+    .parttwo-card-head {
+        font-size: 20px;
+    }
+
+    .parttwo-card-headtwo {
+        font-size: 12px;
+    }
+
+    /* SECTION TWO */
+    #two-partone-headone {
+        font-size: 22px;
+        padding: 10px 10px 5px 10px;
+    }
+
+    .two-partone-para {
+        font-size: 14px;
+        padding: 0 10px 10px 10px;
+    }
+
+    .two-partone-one {
+        margin: 10px 0;
+    }
+
+    .card-width {
+        width: 95%;
+        margin-bottom: 20px;
+    }
+
+    .two-partone-one-card img {
+        height: 70px;
+        max-width: 70px;
+    }
+
+    .two-partone-one-head {
+        font-size: 16px;
+    }
+
+    .two-partone-one-headtwo {
+        font-size: 13px;
+    }
+
+    .two-partone-one-para {
+        font-size: 12px;
+    }
+
+    #two-partone-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+        margin-top: 15px;
+    }
+
+    /* SECTION THREE */
+    .sec-three-parttwo-container {
+        padding: 0 10px;
+    }
+
+    .three-parttwo-one {
+        width: 95%;
+        padding: 10px;
+    }
+
+    #three-parttwo-one-head {
+        font-size: 18px;
+        padding: 5px 0 10px 0;
+    }
+
+    .three-parttwo-one-content-heading {
+        font-size: 16px;
+    }
+
+    .three-parttwo-one-content-para {
+        font-size: 14px;
+    }
+
+    #three-parttwo-one-headtwo {
+        font-size: 18px;
+        padding: 15px 10px 40px 10px;
+        margin: 10px;
+    }
+
+    /* SECTION FOUR */
+    .section-four-partone {
+        padding: 20px;
+    }
+
+    .four-partone-one {
+        width: 95%;
+        padding: 15px;
+    }
+
+    #four-partone-one-content-head {
+        font-size: 25px;
+        padding: 0px 10px 10px 10px;
+    }
+
+    #four-partone-one-content-para {
+        font-size: 14px;
+        width: 95%;
+        padding: 6px 8px;
+        margin-bottom: 20px;
+    }
+
+    .four-partone-one-card {
+        width: 95%;
+        margin-bottom: 15px;
+    }
+
+    .four-partone-one-card-no {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9em;
+    }
+
+    .four-partone-one-card-headone {
+        font-size: 14px;
+    }
+
+    .four-partone-one-card-para {
+        font-size: 12px;
+    }
+
+    .section-four-parttwo {
+        padding-top: 10px;
+    }
+
+    .four-parttwo-container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .four-parttwo-container-one,
+    .four-parttwo-container-two {
+        margin-bottom: 10px;
+    }
+
+    #four-parttwo-container-head {
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    #four-parttwo-container-para {
+        font-size: 14px;
+        padding: 0 5px 5px 5px;
+    }
+
+    .four-parttwo-container-btn button {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+
+    .four-parttwo-container-two-para {
+        min-height: 60px;
+        font-size: 0.8em;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 333px){
+    .one-parttwo-one{width: 10%;
+    font-size: 15px;}
+}
+
+/* FOOTER */
+
+/* FOOTER */
+.footer-partone {
+    width: 100%;
+    /* height: 100%; removed fixed height for responsiveness */
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    padding: 100px; /* Will adjust for smaller screens */
+    justify-content: space-evenly;
+    flex-wrap: wrap; /* Allows columns to wrap to the next line */
+    gap: 30px; /* Adds space between wrapped items */
+}
+
+/* FOOTER FIRST SECTION INFORAG */
+.footer-inforag {
+    width: 30%; /* Will adjust */
+    /* justify-content: space-between; This is for flex containers, not direct content. */
+}
+
+.footer-image {
+    padding-bottom: 25px;
+}
+
+.footer-image img {
+    width: 65%; /* Will adjust */
+    height: auto; /* Ensure image scales proportionally */
+    display: block; /* Removes extra space below image */
+}
+
+.footer-dis {
+    font-size: 17px;
+    font-weight: 550;
+    color: white;
+    padding-bottom: 25px;
+    line-height: 1.6; /* Improve readability */
+}
+
+.footer-logo svg {
+    color: white;
+    margin-right: 13px;
+    font-size: 24px; /* Default size for social icons */
+}
+
+/* FOOTER QUICKLINKS */
+.footer-quicklink {
+    width: 15%; /* Will adjust */
+}
+
+.footer-quicklink a {
+    text-decoration: none;
+    color: white;
+    display: block; /* Make the whole link clickable */
+}
+
+.footer-quicklink a:hover {
+    color: rgb(84, 18, 150);
+    transition: color 0.3s ease;
+}
+
+#heading {
+    font-size: 19px;
+    font-family: sans-serif;
+    color: white;
+    padding-bottom: 25px;
+    white-space: nowrap; /* Prevents heading from wrapping unless explicitly forced */
+}
+
+.footer-quicklink li {
+    display: flex; /* Keep display flex for icon/text alignment if desired */
+    font-size: 16px;
+    font-weight: 700;
+    color: white; /* Redundant if a is styled */
+    padding-bottom: 20px;
+    font-family: sans-serif;
+    /* text-decoration: none; This is on the a tag */
+}
+
+.footer-quicklink li:hover {
+    color: rgb(84, 18, 150); /* Applied to li directly, but a:hover is more specific */
+    transition: color 0.3s ease;
+}
+
+/* FOOTER SERVICES */
+.footer-service {
+    width: 20%; /* Will adjust */
+}
+
+#heading-two {
+    font-size: 19px;
+    font-family: sans-serif;
+    color: white;
+    padding-bottom: 25px;
+    white-space: nowrap;
+}
+
+.footer-service li {
+    display: flex;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    padding-bottom: 20px;
+    font-family: sans-serif;
+    text-decoration: none; /* Redundant if a is styled */
+}
+
+.footer-service a { /* Add a style for service links */
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.footer-service a:hover {
+    color: rgb(84, 18, 150);
+    transition: color 0.3s ease;
+}
+
+
+/* FOOTER CONTACTS */
+.footer-contact {
+    width: 15%; /* Will adjust */
+}
+
+#heading-three {
+    font-size: 19px;
+    font-family: sans-serif;
+    color: white;
+    padding-bottom: 25px;
+    white-space: nowrap;
+}
+
+.footer-contact-loc,
+.footer-contact-phoneno,
+.footer-contact-mail,
+.footer-contact-time {
+    display: flex;
+    padding-bottom: 20px;
+    align-items: flex-start; /* Align icon to top if text wraps */
+}
+
+.footer-contact-logo {
+    margin-right: 13px;
+    padding-top: 5px; /* Aligns icon with text */
+    color: white;
+    font-size: 18px; /* Consistent icon size */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.footer-contact-location a,
+.contact-no a,
+.mail-add a {
+    text-decoration: none;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: white;
+    display: block; /* Make links block level to fill space */
+    line-height: 1.4; /* Improve readability for contact text */
+}
+
+.footer-contact-location a:hover,
+.contact-no a:hover,
+.mail-add a:hover {
+    color: rgb(84, 18, 150);
+    transition: color 0.3s ease;
+}
+
+.contact-no li,
+.mail-add li,
+.office li {
+    list-style-type: none; /* Remove default list bullets */
+    padding-bottom: 3px;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: white; /* Redundant if a is styled */
+}
+
+/* FOOTER-PARTTWO (Copyright/Bottom Bar) */
+.footer-parttwo {
+    display: flex;
+    padding: 30px; /* Will adjust */
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(37, 16, 16);
+    color: white;
+    border-top: solid white 0.5px;
+    font-size: 15px; /* Default font size for copyright */
+    text-align: center; /* Ensure text is centered */
+}
+
+
+/* --------------------------------------------------- */
+/* RESPONSIVE STYLES (MEDIA QUERIES)                   */
+/* --------------------------------------------------- */
+
+/* Tablets and smaller desktops (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .footer-partone {
+        padding: 60px; /* Reduce padding */
+        gap: 40px; /* Increase gap between columns */
+    }
+
+    /* Adjust widths for 2 columns or 3 if space allows */
+    .footer-inforag {
+        width: 45%; /* Two columns per row */
+    }
+
+    .footer-quicklink,
+    .footer-service,
+    .footer-contact {
+        width: 45%; /* Two columns per row */
+    }
+
+    .footer-image img {
+        width: 80%; /* Make image larger within its column */
+    }
+
+    .footer-dis {
+        font-size: 16px;
+    }
+
+    #heading,
+    #heading-two,
+    #heading-three {
+        font-size: 18px; /* Slightly smaller headings */
+        padding-bottom: 20px;
+    }
+
+    .footer-quicklink li,
+    .footer-service li,
+    .footer-contact-location a,
+    .contact-no li,
+    .mail-add li,
+    .office li {
+        font-size: 15px; /* Slightly smaller link text */
+        padding-bottom: 15px;
+    }
+
+    .footer-logo svg {
+        font-size: 22px; /* Smaller social icons */
+    }
+
+    .footer-contact-logo {
+        font-size: 16px; /* Smaller contact icons */
+    }
+
+    .footer-parttwo {
+        padding: 25px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .footer-partone {
+        padding: 40px 20px; /* Further reduce padding */
+        flex-direction: column; /* Stack all columns vertically */
+        align-items: center; /* Center items when stacked */
+        gap: 30px; /* Space between stacked sections */
+    }
+
+    .footer-inforag,
+    .footer-quicklink,
+    .footer-service,
+    .footer-contact {
+        width: 90%; /* Each column takes almost full width */
+        text-align: center; /* Center text within columns */
+        padding: 0; /* Remove column-specific padding, use section padding */
+    }
+
+    /* Adjust specific elements to be centered for mobile */
+    .footer-image {
+        padding-bottom: 15px;
+    }
+    .footer-image img {
+        width: 60%; /* Adjust image size for mobile */
+        max-width: 200px; /* Prevent image from becoming too large */
+        margin: 0 auto; /* Center the image */
+    }
+
+    .footer-dis {
+        font-size: 15px;
+        padding-bottom: 15px;
+    }
+
+    .footer-logo {
+        text-align: center; /* Center social icons */
+        margin-top: 10px;
+    }
+    .footer-logo svg {
+        font-size: 20px;
+        margin: 0 8px; /* Adjust margin between icons */
+    }
+
+    #heading,
+    #heading-two,
+    #heading-three {
+        font-size: 17px; /* Smaller headings */
+        padding-bottom: 15px;
+        white-space: normal; /* Allow headings to wrap if needed */
+    }
+
+    /* Center list items for quicklinks/services */
+    .footer-quicklink ul,
+    .footer-service ul {
+        list-style: none; /* Ensure no bullets if padding is messed up */
+        padding: 0;
+    }
+    .footer-quicklink li,
+    .footer-service li {
+        justify-content: center; /* Center list items if they contain text only */
+        font-size: 14px;
+        padding-bottom: 12px;
+    }
+
+    /* Contact info adjustments */
+    .footer-contact-loc,
+    .footer-contact-phoneno,
+    .footer-contact-mail,
+    .footer-contact-time {
+        justify-content: center; /* Center the icon+text block */
+        flex-direction: row; /* Keep icon and text side-by-side */
+        align-items: flex-start; /* Align icon to top */
+        padding-bottom: 15px;
+        text-align: left; /* Text itself remains left-aligned relative to icon */
+    }
+
+    .footer-contact-logo {
+        margin-right: 10px;
+        padding-top: 2px; /* Smaller padding for icon alignment */
+        font-size: 15px; /* Smaller icons */
+    }
+
+    .footer-contact-location a,
+    .contact-no a,
+    .mail-add a,
+    .office li {
+        font-size: 14px;
+        text-align: left; /* Ensures text is left aligned within its area */
+    }
+
+    .footer-parttwo {
+        padding: 20px;
+        font-size: 13px;
+    }
+}
+
+/* Extra small mobile devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .footer-partone {
+        padding: 30px 15px; /* Smallest padding */
+        gap: 25px; /* Smaller gap */
+    }
+
+    .footer-inforag,
+    .footer-quicklink,
+    .footer-service,
+    .footer-contact {
+        width: 95%; /* Take maximum width */
+    }
+
+    .footer-image img {
+        width: 50%;
+        max-width: 150px;
+    }
+
+    .footer-dis {
+        font-size: 14px;
+        padding-bottom: 10px;
+    }
+
+    .footer-logo svg {
+        font-size: 18px;
+        margin: 0 6px;
+    }
+
+    #heading,
+    #heading-two,
+    #heading-three {
+        font-size: 16px;
+        padding-bottom: 10px;
+    }
+
+    .footer-quicklink li,
+    .footer-service li {
+        font-size: 13px;
+        padding-bottom: 10px;
+    }
+
+    .footer-contact-loc,
+    .footer-contact-phoneno,
+    .footer-contact-mail,
+    .footer-contact-time {
+        padding-bottom: 10px;
+    }
+
+    .footer-contact-logo {
+        margin-right: 8px;
+        font-size: 14px;
+    }
+
+    .footer-contact-location a,
+    .contact-no a,
+    .mail-add a,
+    .office li {
+        font-size: 13px;
+    }
+
+    .footer-parttwo {
+        padding: 15px;
+        font-size: 12px;
+    }
+}
