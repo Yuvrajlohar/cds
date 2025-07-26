@@ -13,13 +13,13 @@
 }
 
 .main {
+    background-color: black;
     width: 100%;
 }
 
 /* Body padding to prevent content from going under fixed navbar */
 body {
-    padding-top: 100px; /* Space for the fixed header */
-    background-color:#f8f9fa; /* Example background for content */
+    padding-top: 100px;     background-color:#000000; 
     min-height: 200vh; /* For demonstration of fixed navbar and scrolling */
     margin: 0; /* Remove default body margin */
     font-family: Arial, sans-serif; /* A basic font for readability */
@@ -147,14 +147,14 @@ nav {
 /* Dropdown Panel for Courses (Desktop) */
 .dropdown-panel {
     display: none; /* Hidden by default, shown by JS */
-    position: absolute;
+    position: fixed;
     /* Position relative to the parent header/nav for full width */
     top: 100px; /* Height of the header */
     left: 500px;
     width: 50%; /* Spans full width of the header */
-    background-color: white;
+    box-shadow: 10px 10px 10px rgba(255, 255, 255,0.9);
     color: black;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(255, 255, 255,0.6);
     z-index: 999; /* Below the header but above other content */
     border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
     overflow: hidden; /* Ensure content stays within border-radius */
@@ -169,7 +169,8 @@ nav {
 .dropdown-panel .categories {
     width: 30%;
     border-right: 1px solid #ccc;
-    background-color: rgba(255, 255, 255,0.4); /* Slightly more opaque */
+    color: white;
+    background-color: rgba(18, 18, 192,0.1); 
     padding: 10px 0; /* Add some vertical padding */
     box-sizing: border-box;
 }
@@ -184,7 +185,7 @@ nav {
 
 .dropdown-panel .categories li:hover,
 .dropdown-panel .categories li.active {
-    background-color: rgba(220, 220, 220, 0.7); /* Lighter gray hover/active */
+    background-color: rgba(220, 220, 220, 0.2); /* Lighter gray hover/active */
     /* Removed border styles here as they can interfere with clean design */
 }
 
@@ -196,7 +197,7 @@ nav {
     gap: 10px; /* Gap between course items */
     list-style: none;
     margin: 0;
-    background-color: rgba(18, 18, 192, 0.1); /* Lighter blue, less opaque */
+    background-color: rgba(18, 18, 192, 0.2); /* Lighter blue, less opaque */
     border-bottom-right-radius: 10px;
     box-sizing: border-box;
     justify-content: flex-start; /* Align courses to the start */
@@ -215,15 +216,17 @@ nav {
     justify-content: flex-start; /* Align text to the left */
     border: 1px solid rgba(18, 18, 192, 0.2); /* Border matching background */
     cursor: pointer;
-    color: #333; /* Darker text for readability */
-    background-color: rgba(255, 255, 255,0.8); /* White background for course items */
+    color: #ffffff; /* Darker text for readability */
+    background-color: rgba(255, 255, 255,0.2); /* White background for course items */
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .dropdown-panel .courses li:hover {
-    background-color: rgba(18, 18, 192, 0.2); /* Lighter blue on hover */
-    border: rgba(255, 255, 255,0.4) solid 1px;
-   color: white;
+    background-color: rgba(255, 255, 255,0.4); 
+    box-shadow: 4px 4px 10px rgba(255, 255, 255,0.2);
+   
+    border: rgba(255, 255, 255,0.5) solid 1px;
+    color: white;
 }
 
 /* Mobile Navigation Overlay (Hidden by default) */
@@ -355,11 +358,6 @@ nav {
     background: linear-gradient(180deg, rgba(211, 231, 232, 1) 0%, rgba(216, 216, 232, 1) 51%, rgba(227, 216, 216, 1) 100%);
     color: blue;
 }
-
-
-/* --------------------------------------------------- */
-/* RESPONSIVE STYLES (MEDIA QUERIES)                   */
-/* --------------------------------------------------- */
 
 /* Tablets and smaller desktops (max-width: 1024px) */
 @media (max-width: 1224px) {
@@ -932,11 +930,38 @@ nav {
 
 .left {
     width: 30%;
-    padding: 30px 30px 0px 30px;
+    padding: 55px 30px 0px 30px;
     height: 60vh;
     line-height: 1.8;
     display: flex;
     align-items: center;
+    flex-direction: column;
+}
+
+.left-paras{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+}
+
+.gallery-left-paraone{
+      background-color: rgb(9, 9, 89);
+      padding: 5px 10px 5px 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: rgb(128, 127, 215) solid 1px;
+    color: white;
+}
+
+.left h1{
+    display: flex;
+    width: 100%;
+    font-size: 40px;
+    color: white;
+    line-height: 1.3;
+    padding: 20px 0px 20px 0px;
+    font-weight: 600;
 }
 
 .gallery-left-para {
@@ -946,16 +971,54 @@ nav {
     font-family: Arial, sans-serif;
 }
 
+.left-button{
+    display: flex;
+    justify-content: start;
+    width: 100%;   
+    padding-top: 35px;
+}
+
+.left-button button{
+     background-color: blueviolet;
+    padding: 15px 14px;
+    color: white;
+    font-size: 17px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+
+}
+
+.left-button button:hover{
+    background: linear-gradient(180deg, rgba(211, 231, 232, 1) 0%, rgba(216, 216, 232, 1) 51%, rgba(227, 216, 216, 1) 100%);
+    padding: 17px 16px;
+    color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .right {
     width: 40%;
     height: 100%;
-    padding: 30px 30px 0px 30px;
+    padding: 65px 30px 0px 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     height: fit-content;
 }
 
 .gallery-right-content {
-    padding: 20px 0px 20px 0px;
+    padding: 25px 25px 25px 25px;
+     border: rgb(128, 127, 215) solid 1px;
+     margin-bottom: 25px;
+     border-radius: 20px;
+     width: 100%;
+     height: 24%;
+    cursor: pointer;
+}
+
+.gallery-right-content:hover {
+    box-shadow: 4px 4px 80px rgba(255, 255, 255,0.3);
 }
 
 .gallery-right-headone {
@@ -995,6 +1058,14 @@ nav {
     align-items: center;
 }
 
+.fourth-section-part-three{ display: flex;
+    width: 70%;
+    align-items:center;
+
+   flex-direction: column;
+    padding: 40px 70px 70px 70px;
+  }
+
 .fourth-section-part {
     display: flex;
     width: 70%;
@@ -1006,6 +1077,39 @@ nav {
     width: 70%;
     justify-content: space-between;
     padding-top: 70px;
+}
+
+#fourth-section-part-three-paraone{
+  font-size: 14px;
+  padding: 10px; 
+  background-color: rgb(9, 9, 89);
+  border: rgb(128, 127, 215) solid 1px;
+  color: white;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+#fourth-section-part-three-head{
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  width: 80%;
+  text-align: center;
+  line-height: 1;
+  color: white;
+  padding: 20px 0px 10px 0px;
+}
+
+#fourth-section-part-three-paratwo{
+ display: flex;
+  justify-content: center;
+  font-size: 16px;
+  width: 80%;
+  text-align: center;
+  color: white;
+  line-height: 1;
+  padding: 20px 0px 10px 0px;
 }
 
 .fourth-section-content-img {
@@ -1029,9 +1133,11 @@ nav {
 }
 
 .fourth-section-headingone {
+    display: flex;
+    justify-content: center;
     font-size: 17px;
     background-color: rgb(9, 9, 89);
-    width: 37%;
+    width: 40%;
     padding: 5px 6px 5px 9px;
     color: white;
     border-radius: 20px;
@@ -1337,6 +1443,11 @@ nav {
 
 /* --- Media Queries for Section Four (Content with Images) --- */
 @media (max-width: 1350px) {
+  .fourth-section-part-three{
+    width: 90%;
+    padding:10px;
+    align-items: none;
+  }
     .fourth-section-part {
         flex-direction: column; /* Stack them vertically */
         width: 90%;
@@ -1365,7 +1476,7 @@ nav {
     }
 
     .fourth-section-headingone {
-        width:150px; /* Allow width to adjust ----------------------------*/
+        width:180px; /* Allow width to adjust ----------------------------*/
         font-size: 15px;
     }
 
@@ -1481,8 +1592,12 @@ nav {
 /* FOOTER QUICKLINKS */
 .footer-quicklink {
     width: 15%; /* Will adjust */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+.footer-quicklink  ul{margin-top: none !important;}
 .footer-quicklink a {
     text-decoration: none;
     color: white;
@@ -1510,6 +1625,42 @@ nav {
     padding-bottom: 20px;
     font-family: sans-serif;
     /* text-decoration: none; This is on the a tag */
+}
+
+.footer-login-btn{display:flex !important;
+justify-content:start !important;
+height: 25%;
+align-items: center;
+}
+
+.footer-login-btn a{display:flex !important;
+justify-content:start !important;
+height: 25%;
+width: 70%;
+align-items: center;
+}
+.footer-login-btn button{
+    display: flex;
+    justify-content: center;
+    background-color: blueviolet;
+    padding: 20px 25px;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    width: 90%;
+}
+
+.footer-login-btn button:hover{
+     background: linear-gradient(180deg, rgba(211, 231, 232, 1) 0%, rgba(216, 216, 232, 1) 51%, rgba(227, 216, 216, 1) 100%);
+     padding: 22px 27px;
+    color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-quicklink li:hover {
@@ -1623,6 +1774,12 @@ nav {
     text-align: center; /* Ensure text is centered */
 }
 
+.footer-parttwo a{
+    color:white;
+    text-decoration: none;
+    
+}
+
 
 /* --------------------------------------------------- */
 /* RESPONSIVE STYLES (MEDIA QUERIES)                   */
@@ -1693,6 +1850,11 @@ nav {
         align-items: center; /* Center items when stacked */
         gap: 30px; /* Space between stacked sections */
     }
+
+    .footer-login-btn{display:flex !important;
+justify-content:center !important;
+
+}
 
     .footer-inforag,
     .footer-quicklink,

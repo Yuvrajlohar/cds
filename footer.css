@@ -1,3 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    background-color: black;
+    width: 100%;
+}
+
 
 /* FOOTER */
 .footer-partone {
@@ -44,8 +55,12 @@
 /* FOOTER QUICKLINKS */
 .footer-quicklink {
     width: 15%; /* Will adjust */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+.footer-quicklink  ul{margin-top: none !important;}
 .footer-quicklink a {
     text-decoration: none;
     color: white;
@@ -73,6 +88,42 @@
     padding-bottom: 20px;
     font-family: sans-serif;
     /* text-decoration: none; This is on the a tag */
+}
+
+.footer-login-btn{display:flex !important;
+justify-content:start !important;
+height: 25%;
+align-items: center;
+}
+
+.footer-login-btn a{display:flex !important;
+justify-content:start !important;
+height: 25%;
+width: 70%;
+align-items: center;
+}
+.footer-login-btn button{
+    display: flex;
+    justify-content: center;
+    background-color: blueviolet;
+    padding: 20px 25px;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    width: 90%;
+}
+
+.footer-login-btn button:hover{
+     background: linear-gradient(180deg, rgba(211, 231, 232, 1) 0%, rgba(216, 216, 232, 1) 51%, rgba(227, 216, 216, 1) 100%);
+     padding: 22px 27px;
+    color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-quicklink li:hover {
@@ -186,6 +237,12 @@
     text-align: center; /* Ensure text is centered */
 }
 
+.footer-parttwo a{
+    color:white;
+    text-decoration: none;
+    
+}
+
 
 /* --------------------------------------------------- */
 /* RESPONSIVE STYLES (MEDIA QUERIES)                   */
@@ -256,6 +313,11 @@
         align-items: center; /* Center items when stacked */
         gap: 30px; /* Space between stacked sections */
     }
+
+    .footer-login-btn{display:flex !important;
+justify-content:center !important;
+
+}
 
     .footer-inforag,
     .footer-quicklink,

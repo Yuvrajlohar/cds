@@ -13,8 +13,7 @@
 
 /* Body padding to prevent content from going under fixed navbar */
 body {
-    padding-top: 100px; /* Space for the fixed header */
-    background-color:#f8f9fa; /* Example background for content */
+    padding-top: 100px;     background-color:#000000; 
     min-height: 200vh; /* For demonstration of fixed navbar and scrolling */
     margin: 0; /* Remove default body margin */
     font-family: Arial, sans-serif; /* A basic font for readability */
@@ -142,14 +141,14 @@ nav {
 /* Dropdown Panel for Courses (Desktop) */
 .dropdown-panel {
     display: none; /* Hidden by default, shown by JS */
-    position: absolute;
+    position: fixed;
     /* Position relative to the parent header/nav for full width */
     top: 100px; /* Height of the header */
     left: 500px;
     width: 50%; /* Spans full width of the header */
-    background-color: rgba(255, 255, 255,0.3);
+    box-shadow: 10px 10px 10px rgba(255, 255, 255,0.9);
     color: black;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(255, 255, 255,0.6);
     z-index: 999; /* Below the header but above other content */
     border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
     overflow: hidden; /* Ensure content stays within border-radius */
@@ -164,7 +163,8 @@ nav {
 .dropdown-panel .categories {
     width: 30%;
     border-right: 1px solid #ccc;
-    background-color: rgba(255, 255, 255,0.4); /* Slightly more opaque */
+    color: white;
+    background-color: rgba(18, 18, 192,0.1); /* Slightly more opaque */
     padding: 10px 0; /* Add some vertical padding */
     box-sizing: border-box;
 }
@@ -179,7 +179,7 @@ nav {
 
 .dropdown-panel .categories li:hover,
 .dropdown-panel .categories li.active {
-    background-color: rgba(220, 220, 220, 0.7); /* Lighter gray hover/active */
+    background-color: rgba(220, 220, 220, 0.2); /* Lighter gray hover/active */
     /* Removed border styles here as they can interfere with clean design */
 }
 
@@ -191,7 +191,7 @@ nav {
     gap: 10px; /* Gap between course items */
     list-style: none;
     margin: 0;
-    background-color: rgba(18, 18, 192, 0.1); /* Lighter blue, less opaque */
+    background-color: rgba(18, 18, 192, 0.2); /* Lighter blue, less opaque */
     border-bottom-right-radius: 10px;
     box-sizing: border-box;
     justify-content: flex-start; /* Align courses to the start */
@@ -210,15 +210,17 @@ nav {
     justify-content: flex-start; /* Align text to the left */
     border: 1px solid rgba(18, 18, 192, 0.2); /* Border matching background */
     cursor: pointer;
-    color: #333; /* Darker text for readability */
-    background-color: rgba(255, 255, 255,0.8); /* White background for course items */
+    color: #ffffff; /* Darker text for readability */
+    background-color: rgba(255, 255, 255,0.2); /* White background for course items */
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .dropdown-panel .courses li:hover {
-    background-color: rgba(18, 18, 192, 0.1); /* Lighter blue on hover */
-    border: rgba(255, 255, 255,0.4) solid 1px;
-    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255,0.4); 
+    box-shadow: 4px 4px 10px rgba(255, 255, 255,0.2);
+   
+    border: rgba(255, 255, 255,0.5) solid 1px;
+    color: white;
 }
 
 /* Mobile Navigation Overlay (Hidden by default) */
@@ -351,16 +353,11 @@ nav {
     color: blue;
 }
 
-
-/* --------------------------------------------------- */
-/* RESPONSIVE STYLES (MEDIA QUERIES)                   */
-/* --------------------------------------------------- */
-
 /* Tablets and smaller desktops (max-width: 1024px) */
 @media (max-width: 1224px) {
     header {
         padding: 10px 15px;
-        height: 100px; /* Slightly reduced header height */
+        height: 80px; /* Slightly reduced header height */
     }
     nav {
         height: 50px; /* Reduced nav content height */
@@ -410,7 +407,7 @@ nav {
 /* Mobile devices (max-width: 768px) */
 @media (max-width: 780px) {
     header {
-        height: 100px; /* Mobile header height */
+        height: 70px; /* Mobile header height */
         padding: 10px 15px; /* Consistent padding */
     }
     nav {
@@ -471,7 +468,7 @@ nav {
 @media (max-width: 480px) {
     header {
         padding: 8px 10px;
-        height: 100px; /* Even smaller header height */
+        height: 60px; /* Even smaller header height */
     }
     nav {
         height: 40px;
@@ -507,7 +504,7 @@ nav {
 @media (max-width: 280px) {
     header {
         padding: 5px 8px;
-        height: 100px;
+        height: 50px;
     }
     nav {
         height: 35px;
@@ -1202,8 +1199,12 @@ nav {
 /* FOOTER QUICKLINKS */
 .footer-quicklink {
     width: 15%; /* Will adjust */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+.footer-quicklink  ul{margin-top: none !important;}
 .footer-quicklink a {
     text-decoration: none;
     color: white;
@@ -1231,6 +1232,42 @@ nav {
     padding-bottom: 20px;
     font-family: sans-serif;
     /* text-decoration: none; This is on the a tag */
+}
+
+.footer-login-btn{display:flex !important;
+justify-content:start !important;
+height: 25%;
+align-items: center;
+}
+
+.footer-login-btn a{display:flex !important;
+justify-content:start !important;
+height: 25%;
+width: 70%;
+align-items: center;
+}
+.footer-login-btn button{
+    display: flex;
+    justify-content: center;
+    background-color: blueviolet;
+    padding: 20px 25px;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    width: 90%;
+}
+
+.footer-login-btn button:hover{
+     background: linear-gradient(180deg, rgba(211, 231, 232, 1) 0%, rgba(216, 216, 232, 1) 51%, rgba(227, 216, 216, 1) 100%);
+     padding: 22px 27px;
+    color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-quicklink li:hover {
@@ -1344,6 +1381,12 @@ nav {
     text-align: center; /* Ensure text is centered */
 }
 
+.footer-parttwo a{
+    color:white;
+    text-decoration: none;
+    
+}
+
 
 /* --------------------------------------------------- */
 /* RESPONSIVE STYLES (MEDIA QUERIES)                   */
@@ -1414,6 +1457,11 @@ nav {
         align-items: center; /* Center items when stacked */
         gap: 30px; /* Space between stacked sections */
     }
+
+    .footer-login-btn{display:flex !important;
+justify-content:center !important;
+
+}
 
     .footer-inforag,
     .footer-quicklink,
