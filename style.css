@@ -695,7 +695,7 @@ nav {
     white-space: nowrap; /* Prevent images from wrapping */
     will-change: transform; /* Optimize for animation */
 
-    /* Animation properties - default values */
+    object-fit:fill;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -1000,19 +1000,23 @@ nav {
     justify-content: center;
 }
 .right {
-    width: 40%;
+    width: 50%;
     height: 100%;
     padding: 65px 30px 0px 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     height: fit-content;
 }
 
+.edit-right{
+    display: flex;
+    justify-content: space-between;
+}
 .gallery-right-content {
     padding: 25px 25px 25px 25px;
      border: rgb(128, 127, 215) solid 1px;
      margin-bottom: 25px;
      border-radius: 20px;
-     width: 100%;
+     width: 48%;
      height: 24%;
     cursor: pointer;
 }
@@ -1037,6 +1041,7 @@ nav {
 
 .gallery-right-para {
     font-size: 18px;
+    text-overflow: ellipsis;
     line-height: 1.5;
     font-weight: 500;
     font-family: sans-serif;

@@ -1,54 +1,87 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // ======== DATA =========
+document.addEventListener('DOMContentLoaded', function () {
+    // ======== DATA WITH LINKS =========
     const coursesByCategory = {
-        all: ["Next.js", "C with C++", "WordPress", "Python", "DSA and C++", "PHP Core & Advanced", "Java Core & Advanced", "Digital Marketing", "Front End (React / Angular)", "Python with Django", "React Native", "Video Editing", "MERN Stack", "MEAN Stack", "Java Full Stack", "Python Full Stack", "Data Analysis"],
-        web: ["Next.js", "WordPress", "PHP Core & Advanced", "Front End (React / Angular)", "Python with Django", "MERN Stack", "MEAN Stack", "Java Full Stack", "Python Full Stack"],
-        language: ["C with C++", "Python", "Java Core & Advanced", "DSA and C++"],
-        app: ["React Native"],
-        ai:["Data Analysis","Machin learning"],
-        other:["Digital Marketing", "Video Editing"]
+        all: [
+            { name: "Next.js", link: "nextjs.html" },
+            { name: "C with C++", link: "c.html" },
+            { name: "WordPress", link: "wordpress.html" },
+            { name: "Python", link: "python.html" },
+            { name: "DSA and C++", link: "dsa.html" },
+            { name: "PHP Core & Advanced", link: "php.html" },
+            { name: "Java Core & Advanced", link: "java.html" },
+            { name: "Digital Marketing", link: "marketing.html" },
+            { name: "Front End (React / Angular)", link: "frontend.html" },
+            { name: "Python with Django", link: "django.html" },
+            { name: "React Native", link: "reactnative.html" },
+            { name: "Video Editing", link: "video.html" },
+            { name: "MERN Stack", link: "mern.html" },
+            { name: "MEAN Stack", link: "mean.html" },
+            { name: "Java Full Stack", link: "javafs.html" },
+            { name: "Python Full Stack", link: "pythonfs.html" },
+            { name: "Data Analysis", link: "analysis.html" }
+        ],
+        web: [
+            { name: "Next.js", link: "nextjs.html" },
+            { name: "WordPress", link: "wordpress.html" },
+            { name: "PHP Core & Advanced", link: "php.html" },
+            { name: "Front End (React / Angular)", link: "frontend.html" },
+            { name: "Python with Django", link: "django.html" },
+            { name: "MERN Stack", link: "mern.html" },
+            { name: "MEAN Stack", link: "mean.html" },
+            { name: "Java Full Stack", link: "javafullstack.html" },
+            { name: "Python Full Stack", link: "pythonfullstack.html" }
+        ],
+        language: [
+            { name: "C with C++", link: "c.html" },
+            { name: "Python", link: "python.html" },
+            { name: "Java Core & Advanced", link: "java.html" },
+            { name: "DSA and C++", link: "dsa.html" }
+        ],
+        app: [
+            { name: "React Native", link: "reactnative.html" }
+        ],
+        ai: [
+            { name: "Data Analysis", link: "dataanalysis.html" },
+            { name: "Machine Learning", link: "ml.html" }
+        ],
+        other: [
+            { name: "Digital Marketing", link: "marketing.html" },
+            { name: "Video Editing", link: "videoediting.html" }
+        ]
     };
 
-    // ======== DESKTOP DROPDOWN ELEMENTS =========
     const coursesLinkDesktop = document.getElementById('courses-link');
     const dropdownPanel = document.getElementById('dropdown-panel');
     const categoryList = document.getElementById('category-list');
     const courseList = document.getElementById('course-list');
-
     let dropdownVisible = false;
 
-    // ======== MOBILE NAVIGATION ELEMENTS =========
     const hamburgerIcon = document.getElementById('hamburger-icon');
     const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
     const closeButton = document.getElementById('close-mobile-nav');
     const mobileNavLinks = mobileNavOverlay ? mobileNavOverlay.querySelectorAll('ul.mobile-nav-page a') : [];
-    const mobileCoursesLink = document.getElementById('mobile-courses-link'); // New ID for mobile courses link
-    let mobileCoursesDropdown = null; // Will be set dynamically
+    const mobileCoursesLink = document.getElementById('mobile-courses-link');
+    let mobileCoursesDropdown = null;
 
-    // Function to open the mobile menu
     function openMobileMenu() {
         if (mobileNavOverlay) {
             mobileNavOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling on the body
+            document.body.style.overflow = 'hidden';
         }
     }
 
-    // Function to close the mobile menu
     function closeMobileMenu() {
         if (mobileNavOverlay) {
             mobileNavOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
-
-            // Also hide the nested mobile courses dropdown if open
+            document.body.style.overflow = '';
             if (mobileCoursesDropdown && mobileCoursesDropdown.classList.contains('active')) {
                 mobileCoursesDropdown.classList.remove('active');
             }
         }
     }
 
-    // Event listener for the hamburger icon to TOGGLE the mobile menu
     if (hamburgerIcon && mobileNavOverlay) {
-        hamburgerIcon.addEventListener('click', function() {
+        hamburgerIcon.addEventListener('click', function () {
             if (mobileNavOverlay.classList.contains('active')) {
                 closeMobileMenu();
             } else {
@@ -57,95 +90,77 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listener for closing the mobile menu using the close button
     if (closeButton) {
         closeButton.addEventListener('click', closeMobileMenu);
     }
 
-    // Event listeners for closing the mobile menu when a link is clicked inside the mobile menu
     mobileNavLinks.forEach(link => {
-        // Exclude the 'Courses' link from closing the menu immediately
         if (link.id !== 'mobile-courses-link') {
             link.addEventListener('click', closeMobileMenu);
         }
     });
 
-    // Close mobile menu if user clicks directly on the overlay background
     if (mobileNavOverlay) {
-        mobileNavOverlay.addEventListener('click', function(event) {
+        mobileNavOverlay.addEventListener('click', function (event) {
             if (event.target === mobileNavOverlay) {
                 closeMobileMenu();
             }
         });
     }
 
-    // ======== DESKTOP DROPDOWN LOGIC ========
-
-    // Toggle dropdown on click of desktop Courses link
+    // ======== DESKTOP COURSES DROPDOWN =========
     if (coursesLinkDesktop && dropdownPanel) {
         coursesLinkDesktop.addEventListener('click', (e) => {
             e.preventDefault();
             dropdownVisible = !dropdownVisible;
             if (dropdownVisible) {
                 dropdownPanel.classList.add('show-dropdown');
-                coursesLinkDesktop.classList.add('active'); // Add active class to link
+                coursesLinkDesktop.classList.add('active');
             } else {
                 dropdownPanel.classList.remove('show-dropdown');
-                coursesLinkDesktop.classList.remove('active'); // Remove active class from link
+                coursesLinkDesktop.classList.remove('active');
             }
         });
     }
 
-    // Hide desktop dropdown on click outside
     document.addEventListener('click', (e) => {
         if (dropdownPanel && coursesLinkDesktop &&
             !dropdownPanel.contains(e.target) && e.target !== coursesLinkDesktop) {
             dropdownPanel.classList.remove('show-dropdown');
-            coursesLinkDesktop.classList.remove('active'); // Remove active class
+            coursesLinkDesktop.classList.remove('active');
             dropdownVisible = false;
         }
     });
 
-    // Handle hover over category in desktop dropdown
     if (categoryList && courseList) {
         const categoryItems = categoryList.querySelectorAll('li');
 
         categoryItems.forEach(item => {
             item.addEventListener('mouseenter', () => {
-                // Remove 'active' class from all categories
                 categoryItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active'); // Add 'active' to current category
-
-                // Get course list based on category
+                item.classList.add('active');
                 const category = item.getAttribute('data-category');
                 const courses = coursesByCategory[category];
-
-                // Clear and insert course items
                 courseList.innerHTML = "";
                 if (courses) {
                     courses.forEach(course => {
                         const li = document.createElement('li');
-                        li.textContent = course;
+                        const a = document.createElement('a');
+                        a.href = course.link;
+                        a.textContent = course.name;
+                        li.appendChild(a);
                         courseList.appendChild(li);
                     });
                 }
             });
         });
 
-        // Default load (show web dev courses on initial dropdown open)
-        // This will be triggered when the dropdown first becomes visible
-        // We'll call it here to ensure the first category is active and its courses are shown
-        // if the dropdown is visible initially (though it's display: none by default)
-        // Or ensure it runs when the dropdown becomes visible.
-        // For now, let's make sure it runs if categories exist.
         if (categoryItems.length > 0) {
             categoryItems[0].dispatchEvent(new Event('mouseenter'));
         }
     }
 
-    // ======== MOBILE COURSES NESTED DROPDOWN LOGIC ========
-
-    // Inject mobile courses dropdown HTML if mobileCoursesLink exists
+    // ======== MOBILE DROPDOWN FOR COURSES =========
     if (mobileCoursesLink) {
         const mobileCoursesDropdownHTML = `
             <ul class="mobile-courses-dropdown">
@@ -154,38 +169,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 `).join('')}
             </ul>
         `;
-        // Insert the dropdown after the "Courses" link in the mobile menu
         mobileCoursesLink.insertAdjacentHTML('afterend', mobileCoursesDropdownHTML);
-        mobileCoursesDropdown = mobileCoursesLink.nextElementSibling; // Get the newly created dropdown
+        mobileCoursesDropdown = mobileCoursesLink.nextElementSibling;
 
-        mobileCoursesLink.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default link behavior
-            // Toggle the 'active' class on the mobile courses dropdown
+        mobileCoursesLink.addEventListener('click', function (e) {
+            e.preventDefault();
             if (mobileCoursesDropdown) {
                 mobileCoursesDropdown.classList.toggle('active');
             }
         });
 
-        // Add event listeners for the sub-category links in the mobile dropdown
         if (mobileCoursesDropdown) {
             const mobileCategoryLinks = mobileCoursesDropdown.querySelectorAll('.mobile-category-link');
             mobileCategoryLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const category = e.target.getAttribute('data-category');
                     const courses = coursesByCategory[category];
 
-                    // For mobile, you might want to replace the category list with the actual courses
-                    // Or, navigate to a separate page showing courses, or show a simple alert.
-                    // For this example, let's just log them or potentially close the menu.
-                    console.log(`Clicked on mobile category: ${category}`);
-                    console.log('Courses:', courses);
-                    // You could close the mobile menu here if a sub-category click means navigation
-                    // closeMobileMenu();
+                    if (courses) {
+                        const courseListHTML = `
+                            <ul class="mobile-course-links">
+                                ${courses.map(c => `<li><a href="${c.link}">${c.name}</a></li>`).join('')}
+                            </ul>
+                        `;
+                        mobileCoursesDropdown.innerHTML = `
+                            <li><a href="#" class="back-to-categories">← Back to Categories</a></li>
+                            ${courseListHTML}
+                        `;
 
-                    // Optional: If you want to list courses within the mobile dropdown dynamically
-                    // This gets more complex with nested lists. For now, we just log.
-                    // A better UX would be to open a new "screen" within the overlay for courses or link to a page.
+                        const backLink = mobileCoursesDropdown.querySelector('.back-to-categories');
+                        backLink.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            mobileCoursesDropdown.innerHTML = mobileCoursesDropdownHTML;
+                            // rebind links
+                            mobileCoursesDropdown.querySelectorAll('.mobile-category-link').forEach(l => {
+                                l.addEventListener('click', arguments.callee);
+                            });
+                        });
+                    }
                 });
             });
         }
